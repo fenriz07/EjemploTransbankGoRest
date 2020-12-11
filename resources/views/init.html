@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Init Transaction</title>
+  </head>
+  <body>
+    <form id="form-transbank" action="{{.url}}" method="post">
+      <input type="hidden" name="token_ws" value="{{.token}}" />
+      <button style="display: none" type="submit" class="submit">
+        Continuar
+      </button>
+    </form>
+
+    <script>
+      document.getElementById("form-transbank").submit();
+    </script>
+  </body>
+</html>
