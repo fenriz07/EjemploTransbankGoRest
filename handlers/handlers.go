@@ -18,6 +18,7 @@ func Init() {
 
 	/*View*/
 	router.HandleFunc("/", controllers.InitTransaction).Methods("GET")
+	router.HandleFunc("/commit", controllers.CommitTransaction).Methods("POST")
 
 	PORT := os.Getenv("PORT")
 
