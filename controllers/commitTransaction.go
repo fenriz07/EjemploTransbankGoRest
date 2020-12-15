@@ -1,6 +1,7 @@
 package controllers
 
 import (
+	"fmt"
 	"log"
 	"net/http"
 
@@ -32,5 +33,32 @@ func CommitTransaction(w http.ResponseWriter, r *http.Request) {
 		token = r.FormValue("token_ws")
 	}
 
-	transaction.Commit(token)
+	/*Commit de la transacción y resultado de la misma*/
+	resp, err := transaction.Commit(token)
+
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	log.Println(resp)
+
+	/*Obtención del status de la transacción*/
+	resp2, err := transaction.GetStatus(token)
+
+	log.Println(resp2)
+
+	if err != nil {
+		log.Println(err)
+	}
+
+	/*Anulación*/
+	resp3, err := transaction.Refund(token, 1000)
+
+	if err != nil {
+		log.Println(err)
+	}
+
+	log.Println("Respuesta 3")
+	log.Println(resp3)
+
 }

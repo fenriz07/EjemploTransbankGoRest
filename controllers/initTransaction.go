@@ -1,6 +1,7 @@
 package controllers
 
 import (
+	"fmt"
 	"html/template"
 	"net/http"
 
@@ -19,7 +20,12 @@ func InitTransaction(w http.ResponseWriter, r *http.Request) {
 		 - Monto
 		 - Url de retorno
 	*/
-	transaction, err := transaction.Create("ordenCompra12345678", "sesion1234557545", 1000, "http://localhost:8080/commit")
+
+	nOrder := r.FormValue("order")
+
+	order := fmt.Sprintf("goFenriz%s", nOrder)
+
+	transaction, err := transaction.Create(order, "sesion1234557545", 1000, "http://localhost:8080/commit")
 
 	if err != nil {
 		http.Error(w, err.Error(), 500)
